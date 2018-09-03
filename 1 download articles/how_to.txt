@@ -1,0 +1,5 @@
+Use something to download articles into .json files with keywords classification by Machinebox (https://machinebox.io/docs/textbox).
+
+Using this:
+https://github.com/heximhotep/fakenews_scraper/blob/master/fakenews_scraper.ipynb
+(+ forked to https://github.com/previtus/fakenews_scraper)

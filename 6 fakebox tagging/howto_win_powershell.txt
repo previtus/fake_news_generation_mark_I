@@ -1,0 +1,5 @@
+install docker
+
+$env:MB_KEY="........"
+
+docker run -p 8080:8080 -e "MB_KEY=$Env:MB_KEY" machinebox/fakebox

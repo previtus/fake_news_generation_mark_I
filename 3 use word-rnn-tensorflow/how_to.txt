@@ -1,0 +1,80 @@
+# prepare data/A/input.txt
+mkdir B
+
+python train.py --data_dir data/A --save_dir B --num_epochs 100
+python train.py --data_dir data/A --save_dir B --num_epochs 100 --batch_size 16 --gpu_mem 0.8
+
+--init_from B
+	continue with old checkpoint
+
+python sample.py --save_dir B --pick 2 --width 4 --count 5 -n 500
+
+
+==================================================
+Run code which we can reconnect to:
+==================================================
+
+screen
+
+ssh <TARGET PC>
+cd word-rnn-tensorflow/
+nvidia-smi #select empty gpu
+
+CUDA_VISIBLE_DEVICES='0' python train.py --data_dir data/test2_<DATASET> --save_dir output_<DATASET> --num_epochs 50 --batch_size 32 --gpu_mem 0.9  --init_from output_<DATASET>
+
+(ps: python3 didn't work)
+
+(during the training process...)
+Ctrl-A, D
+	to detach
+screen -ls
+	in another window to get sessions
+	There is a screen on:
+		4324.<pcname>	(09/01/18 15:55:16)	(Detached)
+	1 Socket in /var/run/screen/S-<username>.
+exit
+(and then later)
+screen -r
+	Re-attach
+
+==================================================
+Init new window:
+==================================================
+
+screen -r
+Ctrl-A, C
+	to get new window
+Ctrl-A, N
+	to get to the previous one, and again to get back
+Ctrl-A, shift-S
+	two windows, swap with Ctrl-A, Tab, and then change each with Ctrl-A, N
+	Ctrl-A X closes the split
+
+
+Memory issues on GeForce GTX 970 with 4037MiB
+220MB text file for training the dataset
+ --batch_size 2 --gpu_mem 0.9 --num_layers 2 --rnn_size 200 > still fits
+
+
+==================================================
+Test it:
+==================================================
+
+CUDA_VISIBLE_DEVICES='0' python sample.py --save_dir <MODEL_FOLDER B> --pick 2 --width 4 --count 1 -n 100
+
+# to check if it's working...
+
+==================================================
+Get back:
+==================================================
+
+ssh to the server
+screen -Q windows
+screen -ls
+screen -r
+
+==================================================
+Generate texts:
+==================================================
+
+CUDA_VISIBLE_DEVICES='0' python sample.py --save_dir <MODEL_FOLDER B> --pick 2 --width 4 --count 50 -n 1000 | tee <NAME>.txt
