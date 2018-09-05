@@ -1,0 +1,14 @@
+
+
+ssh <USER@SERVER>
+
+cd to the correct folder with "WordRnn analysis and runner.ipynb" (/ArtML/_Word_rnn_analysis/)
+
+on server:
+	ipython notebook --no-browser --port=8889
+
+on intermediate:
+	(ssh -N -f -L localhost:8889:localhost:8889 <WHATEVER THE LATER MACHINE NAME IS>)
+
+on local:
+	ssh -N -f -L localhost:8901:localhost:8889 <USER@SERVER>
