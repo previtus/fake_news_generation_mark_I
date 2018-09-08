@@ -1,0 +1,19 @@
+# prepare environment:
+conda create -n fakenewscleaning python=3.6
+source activate fakenewscleaning
+pip install fuzzywuzzy[speedup]
+pip install matplotlib numpy tqdm nltk
+
+python
+import nltk
+nltk.download('punkt')
+
+# I copied the "analysis_in_one_file.py" into one place
+cd /<WHEREVER THAT PLACE IS>
+
+
+# commands
+source activate fakenewscleaning
+python analysis_in_one_file.py -input input.txt -generated generated.txt -outputname cleaned_outputs/CLEAN_.txt
+
+

@@ -153,7 +153,7 @@ if __name__ == '__main__':
     # Two layer model with 256 neurons, beam search width 16
     plt.xlabel("Default model and sampling.")
     #plt.show()
-    fig.savefig("last_distances.pdf", bbox_inches='tight')
+    fig.savefig(args.outputname+"last_distances.pdf", bbox_inches='tight')
 
     f.close()
 
