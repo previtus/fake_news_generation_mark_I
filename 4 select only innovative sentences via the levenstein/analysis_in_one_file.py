@@ -24,6 +24,9 @@ import os
 import re, string
 import matplotlib.pyplot as plt
 
+if not('DISPLAY' in os.environ):
+    matplotlib.use("Agg")
+
 import nltk.data
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
