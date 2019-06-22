@@ -5,3 +5,5 @@ Artwork submitted: [[NeurIPS Workshop]](http://www.aiartonline.com/community/vit
 Short paper submitted: [[ISEA'19]](http://isea2019.isea-international.org/daily26.asp)
 
 Pipeline for fake news generation. This process uses several other github repos, here we have the "how to's" text files.
+
+![Illustration image](https://github.com/previtus/fake_news_generation_mark_I/blob/master/pipeline_illustration.png)
